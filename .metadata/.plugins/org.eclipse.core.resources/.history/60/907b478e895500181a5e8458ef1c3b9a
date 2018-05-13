@@ -1,0 +1,65 @@
+package com.Selenium.TestBase;
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class TestBase {
+		
+	WebDriver driver;
+	
+	
+	
+	public void getBrowser(String browser){
+		if(System.getProperty("os.name").contains("Window"))
+		{System.out.println("Operating System:-"+System.getProperty("os.name"));
+			if(browser.equalsIgnoreCase("firefox"))
+			{
+				//https://github.com/mozilla/geckodriver/releases
+				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\Drivers\\geckodriver.exe");
+				driver= new FirefoxDriver();
+				System.out.println("FireFox driver set");
+				
+			}
+			else if(browser.equalsIgnoreCase("chrome"))
+			{
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
+				driver =new ChromeDriver();
+				System.out.println(System.getProperty("user.dir"));
+			}
+			else {System.out.println("Farzi");}
+			
+			
+		}
+		else if(System.getProperty("os.name").contains("mac"))
+		{
+			if(browser.equalsIgnoreCase("firefox"))
+			{
+				System.setProperty("webdriver.gecko.marionette", System.getProperty("user.dir")+"/drivers/geckodriver");
+				driver= new FirefoxDriver();
+				
+			}
+			else if(browser.equalsIgnoreCase("chrome"))
+			{
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver");
+				driver =new ChromeDriver();
+				
+			}
+			
+			
+		} 
+	}
+
+	public static void main(String[] args)
+	{
+	
+		TestBase test = new TestBase();
+		test.getBrowser("firefox");
+		//test.driver.get("https://chromedriver.storage.googleapis.com/index.html?path=2.28/");
+		
+	}
+	
+
+}

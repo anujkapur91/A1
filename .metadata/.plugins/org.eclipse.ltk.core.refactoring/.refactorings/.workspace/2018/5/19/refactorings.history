@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;Selenium/src/main/java/Drivers&apos;" deleteContents="false" description="Delete resource &apos;Selenium/src/main/java/Drivers&apos;" element1="/Selenium/src/main/java/Drivers" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1526063316358"/>&#x0A;<refactoring comment="Delete resource &apos;Selenium/src/main/java/Driver2&apos;" deleteContents="false" description="Delete resource &apos;Selenium/src/main/java/Driver2&apos;" element1="/Selenium/src/main/java/Driver2" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1526093924082"/>
+</session>

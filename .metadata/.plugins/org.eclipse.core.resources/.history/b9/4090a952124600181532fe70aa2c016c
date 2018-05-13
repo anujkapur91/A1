@@ -1,0 +1,146 @@
+package SelBasic;
+
+
+//import static org.testng.Assert.assertTrue;
+
+import java.util.Random;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import Utility.*;
+
+
+
+//import org.openqa.selenium.*;
+
+public class FirstTestScript {
+
+	@Test
+	public void testMytest(){
+	//public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		FirstTestScript obj = new FirstTestScript();
+		
+		System.setProperty("webdriver.gecko.driver", "E:\\geckodriver-v0.17.0-win64\\geckodriver.exe");
+		
+		WebDriver driver = new FirefoxDriver();
+		
+		driver.get("http://demoqa.com/");
+		driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/aside[1]/div[2]/div/ul/li/a")).click();
+		
+		ScreenShots.screenshots(driver, "Registration");
+	
+		
+		driver.findElement(By.cssSelector("#name_3_firstname")).sendKeys(GeneralFns.randomString(7));
+		ScreenShots.screenshots(driver, "Firstname");
+		driver.findElement(By.cssSelector("#name_3_lastname")).sendKeys(GeneralFns.randomString(7));
+		ScreenShots.screenshots(driver, "LastName");
+		driver.findElement(By.cssSelector("li.fields:nth-child(2) > div:nth-child(1) > div:nth-child(2) > input:nth-child(2)")).click();
+		driver.findElement(By.xpath("//input[@value='reading']")).click();
+		
+		
+		Select country = new Select(driver.findElement(By.id("dropdown_7")));
+		
+		country.selectByVisibleText("India");
+		ScreenShots.screenshots(driver, "Country");
+		
+		
+		Select month = new Select(driver.findElement(By.cssSelector("#mm_date_8")));
+		
+		month.selectByVisibleText("6");
+		
+		Select day = new Select(driver.findElement(By.cssSelector("#dd_date_8")));
+		
+		day.selectByVisibleText("11");
+		
+		Select year = new Select(driver.findElement(By.xpath("//select[@id='yy_date_8']")));
+		
+		
+		year.selectByVisibleText("1991");
+		
+		
+		
+		driver.findElement(By.xpath("//input[@id='phone_9']")).sendKeys(obj.randomNumber(10));
+		String username = obj.randomString(9).toLowerCase()+obj.randomNumber(2);
+		
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@id='email_1']")).sendKeys(username+"@gmail.com");
+		driver.findElement(By.xpath("//textarea[@id='description']")).sendKeys("Test");
+		String password = obj.randomString(1)+obj.randomString(5).toLowerCase()+"@"+obj.randomNumber(3);
+		
+		driver.findElement(By.xpath("//input[@id='password_2']")).sendKeys(password);
+		
+		driver.findElement(By.xpath("//input[@id='confirm_password_password_2']")).sendKeys(password);
+		driver.findElement(By.xpath("//input[@name='pie_submit']")).click();
+		
+		String Message= driver.findElement(By.cssSelector(".piereg_message")).getText();
+		String Expected = "Thank you for your registration";
+		Assert.assertEquals(Message, Expected, "Actual Message does not match with expected");
+		Assert.assertTrue(Message.contains(Expected));
+		
+		
+		if (Message==Expected)
+		{
+			
+			
+		}
+		ScreenShots.screenshots(driver, "Message");
+	
+		driver.close();
+		
+	}
+	
+	public String randomString(int a)
+	{
+		
+		String charString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String randomString="";
+		int length = a;
+		int i;
+		
+		Random rand = new Random();
+		
+		for (i=0;i<length;i++)
+		{
+			randomString= randomString + charString.charAt(rand.nextInt(charString.length()));
+			
+			
+		}
+		return randomString;
+		
+		
+		
+				
+	}
+	
+	public String randomNumber(int a)
+	{
+		
+		String charString = "1234567890";
+		String randomNumber="";
+		int length = a;
+		int i;
+		
+		Random rand = new Random();
+		
+		for (i=0;i<length;i++)
+		{
+			randomNumber= randomNumber + charString.charAt(rand.nextInt(charString.length()));
+			
+			
+		}
+		return randomNumber;
+		
+		
+		
+				
+	}
+	
+
+}
